@@ -19,4 +19,15 @@ ARM_SUBSCRIPTION_ID="<azure_subscription_id>"
 ARM_TENANT_ID="<azure_subscription_tenant_id>"
 ARM_CLIENT_ID="<service_principal_appid>"
 ARM_CLIENT_SECRET="<service_principal_password>"
+
+```
+
+#### Configuration of Existing resource is generated using import block as below.
+
+```
+import {
+  to = azurerm_resource_group.resource_group
+  id = "/subscriptions/<subscription-id>/resourceGroups/<resource group name>"
+}
+
 ```

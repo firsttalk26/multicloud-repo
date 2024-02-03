@@ -36,15 +36,18 @@ terraform {
 
 
 provider "azurerm" {
-  features {
-    
-  }
+  features {}
+  tenant_id       = var.ARM_TENANT_ID
+  client_id       = var.ARM_CLIENT_ID
+  subscription_id = var.ARM_SUBSCRIPTION_ID
+  client_secret   = var.ARM_CLIENT_SECRET
 }
 
-locals {
 
-  /*provider_alias = regexall("aws", var.cloud_provider) ? "aws" :  regexall("gcp", var.cloud_provider) ? "google" : regexall("azure", var.cloud_provider) ? "azure": 0
-*/
-  provider_alias = var.cloud_provider == "aws" ? "aws" : var.cloud_provider == "google" ? "google" : var.cloud_provider == "azure" ? "azure" : 0
 
+module "azure_rg" {
+  source   = "./modules/azure/resource-group"
+  name     = var.azure_resources.resource_group.name
+  location = var.azure_resources.resource_group.location
+  enable   = var.azure_resources.resource_group.enable
 }
