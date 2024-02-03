@@ -9,7 +9,7 @@ Authenticate terraform using service principal and client secret on Azure.
 
 #### Run below command to create service principal.
 
-az ad sp create-for-rbac --name <service_principal_name> --role Contributor --scopes /subscriptions/<subscription_id>
+a> az ad sp create-for-rbac --name <service_principal_name> --role Contributor --scopes /subscriptions/<subscription_id>
 
 #### Add below variables in .auto.tfvars file.
 
