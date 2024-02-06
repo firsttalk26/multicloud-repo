@@ -31,3 +31,43 @@ import {
 }
 
 ```
+
+##### Variables Type
+
+```
+string  
+number  
+boolean 
+list   
+map     
+set 
+```
+
+##### Retrive variable value as output using loop
+
+
+```
+locals {
+  resourceGroup = [
+      {
+        id   = "/subscriptions/<subscription id>/resourceGroups/dev"
+        name = "dev"
+      }
+  ]
+}
+
+output "resource_group"{
+  value = { for i, resourceGroup in local.resourceGroup : "name-${i}" => resourceGroup }
+}
+
+```
+
+###### Terraform automatically converts number and bool values to strings when needed. It also converts strings to numbers or bools, as long as the string contains a valid representation of a number or bool value
+
+##### Terraform loads variables in the following order, with later sources taking precedence over earlier ones:
+
+* Environment variables
+* The terraform.tfvars file, if present.
+* The terraform.tfvars.json file, if present.
+* Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
+* Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
