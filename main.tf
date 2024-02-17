@@ -4,10 +4,7 @@ terraform {
       source  = "hashicorp/google"
       version = "~> 4.0"
     }
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
+  
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "3.90.0"
@@ -51,3 +48,15 @@ module "azure_rg" {
   location = var.azure_resources.resource_group.location
   enable   = var.azure_resources.resource_group.enable
 }
+
+
+module "azure_network" {
+  source   = "./modules/azure/network"
+  name = var.azure_resources.network_setting.name
+  location = module.azure_rg.resource_group_location == null ? var.azure_resources.network_setting.location : module.azure_rg.resource_group_location
+  resource_group_name=module.azure_rg.resource_group_name == null ? var.azure_resources.network_setting.resource_group_name : module.azure_rg.resource_group_name
+  address_space = var.azure_resources.network_setting.address_space
+  tags = var.azure_resources.network_setting.tags
+  depends_on = [module.azure_rg]
+}
+
