@@ -22,6 +22,16 @@ variable "address_space"{
     nullable = false
 }
 
+variable "subnet"{
+  description = "Subnet Settings"
+  nullable = true
+}
+
+variable "securityGroup"{
+  description = "Security group Settings"
+  nullable = true
+}
+
 variable "tags" {
     description = "Tags of azure network"
   }

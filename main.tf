@@ -52,11 +52,13 @@ module "azure_rg" {
 
 module "azure_network" {
   source   = "./modules/azure/network"
-  name = var.azure_resources.network_setting.name
+  name = var.azure_resources.network_setting.vnet_name
   location = module.azure_rg.resource_group_location == null ? var.azure_resources.network_setting.location : module.azure_rg.resource_group_location
   resource_group_name=module.azure_rg.resource_group_name == null ? var.azure_resources.network_setting.resource_group_name : module.azure_rg.resource_group_name
   address_space = var.azure_resources.network_setting.address_space
   tags = var.azure_resources.network_setting.tags
+  subnet = var.azure_resources.network_setting.subnet
+  securityGroup = var.azure_resources.network_setting.securityGroup
   depends_on = [module.azure_rg]
 }
 
