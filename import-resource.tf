@@ -38,7 +38,7 @@
 # }
 
 
-  
+
 # output "resource_group"{
 #   value = { for i, resourceGroup in local.resourceGroup : "name-${i}" => resourceGroup }
 # }
